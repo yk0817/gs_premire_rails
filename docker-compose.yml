@@ -1,0 +1,49 @@
+# docker-composeのフォーマットver
+version: '3'
+
+services:
+# 各サービス名を定義(コンテナ間通信の際、サービス名を元に指定出来る)
+  web:
+    # dockerfileを元にbuild
+    build: .
+    # 正常に終了させないとserver.pidが残るので削除
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # dockerホスト外に公開するポート:dockerホストポート
+    ports:
+      - "3000:3000"
+    # バインドマウントパス(ローカル):マウント先(docker)のパス
+    volumes:
+      - .:/app
+      - .:/ruby_test
+      - bundle:/bundle
+    # webサービスより前に起動したいコンテナを明記
+    # railsはDBが起動していないと動かない
+    depends_on:
+      - db
+      - redis
+    tty: true
+    stdin_open: true
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-volume:/var/lib/mysql
+    # MYSQLのパスワード
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+  redis:
+    image: redis:5.0.3
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis:/data
+    command: redis-server --appendonly yes
+# http://docs.docker.jp/engine/userguide/containers/dockervolumes.html#id15
+# bundleは今の所必要なし
+volumes:
+  db-volume:
+  redis:
+    driver: local
+  bundle:
+    driver: local
