@@ -7,7 +7,7 @@ services:
     # dockerfileを元にbuild
     build: .
     # 正常に終了させないとserver.pidが残るので削除
-    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec foreman start -f Procfile"
     # dockerホスト外に公開するポート:dockerホストポート
     ports:
       - "3000:3000"
