@@ -8,5 +8,5 @@ ActiveRecord::Base.establish_connection(
   host:     "gs-premire-rails_db_1",  #nameでも入れる。
   username: "root",  #ユーザー名
   password: "password",  #パスワード
-  database: "ruby_study",  #データベース名
+  database: "ruby_test",  #データベース名
 )
