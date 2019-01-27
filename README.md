@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## setup
 
-Things you may want to cover:
+```
+$ make init
+$ make up #初回のみ
+```
+## makeコマンド一覧表示
+```
+$ make help
+```
+## dockerで実験してみたい人は以下のコマンドを実行してみてください。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+# 【注意】全てイメージ削除します。
+$ docker ps -aq | xargs docker rmi -f
+```
