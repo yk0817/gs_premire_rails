@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>ログイン</h1>
+  <% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+  <% elsif flash[:login_error] %>
+    <div class="alert alert-danger"><%= flash[:login_error] %></div>
+  <% end %>
+  <%= form_with(scope: :session, url: "/login", local: true) do |f| %>
+    <%= f.label(:email, "email") %>
+    <%= f.text_field(:email, class: "form-control") %>
+    <%= f.label(:password, "password") %>
+    <%= f.password_field(:password, class: "form-control") %>
+    <%= f.submit("ログイン", class: "btn btn-primary") %>
+  <% end %>
+</div>

@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "sessions/new"
+  # user登録画面
+  get "users/new"
+  post "users/create"
+  # login
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
+  # 記事登録画面
+  get "posts/index"
+  get "posts/:id", to: "posts#show"
+  get "posts/new"
+  get "posts/edit"
+  # get "posts/create"
+  post "posts/create"
+
 end

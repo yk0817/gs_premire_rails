@@ -1,0 +1,14 @@
+<div class="show-wrapper container">
+  <div class="col-lg-8">
+    <h1 class="mt-4"><%= @post.title %></h1>
+    <p class="lead">
+      by <%= @post.user.name %>
+    </p>
+    <hr>
+    <p>created_at: <%= @post.created_at.strftime("%Y年%m月%d日") %></p>
+    <hr>
+    <p class="bg-light">
+      <%= @post.content %>
+    </p>
+  </div>
+</div>
