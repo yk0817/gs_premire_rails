@@ -1,9 +1,11 @@
 <template>
-  <footer class="footer bg-light">
-    <div class="container">
-      <span class="navbar-brand">{{ msg }}</span>
-    </div>
-  </footer>
+  <div id = "footer">
+    <footer class="footer bg-light">
+      <div class="container">
+        <span class="navbar-brand">{{ msg }}</span>
+      </div>
+    </footer>
+  </div>
 </template>
 <script>
     export default {
