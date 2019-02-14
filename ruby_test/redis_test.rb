@@ -13,10 +13,10 @@ $redis.set("key", "value")
 # p $redis.get("key") #nilになる
 
 # カウント
-# zincrby 第一引数: キー, 第二引数: 増分, 第三引数: 初期値
-# $redis.zincrby("count", 1, 0)
+# incr 
+# $redis.incr("count")
 # p $redis.get("count")
-# $redis.zincrby("count", 1, 0)
+# $redis.incr("count")
 # p $redis.get("count")
 
 __END__
