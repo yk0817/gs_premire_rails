@@ -9,10 +9,9 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   # 記事登録画面
   get "posts/index"
-  get "posts/:id", to: "posts#show"
   get "posts/new"
   get "posts/edit"
-  # get "posts/create"
   post "posts/create"
+  get "posts/:id", to: "posts#show"
 
 end
