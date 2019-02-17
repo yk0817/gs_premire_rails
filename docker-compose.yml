@@ -6,11 +6,15 @@ services:
   web:
     # dockerfileを元にbuild
     build: .
+    container_name: gs_rails
     # 正常に終了させないとserver.pidが残るので削除
     command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec foreman start -f Procfile"
     # dockerホスト外に公開するポート:dockerホストポート
     ports:
       - "3000:3000"
+    environment:
+      REDIS_URL: redis://redis:6379
+      REDIS_PORT: 6379
     # バインドマウントパス(ローカル):マウント先(docker)のパス
     volumes:
       - .:/app
@@ -27,6 +31,7 @@ services:
     image: mysql:5.7
     volumes:
       - db-volume:/var/lib/mysql
+    container_name: gs_mysql
     # MYSQLのパスワード
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -34,6 +39,7 @@ services:
       - "3307:3306"
   redis:
     image: redis:5.0.3
+    container_name: gs_redis
     ports:
       - "6380:6379"
     volumes:

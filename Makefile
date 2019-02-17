@@ -10,6 +10,8 @@ init:
 	docker-compose run $(RAILS) rails db:migrate
 down:
 	docker-compose down
+stop:
+	docker-compose stop
 up:
 	docker-compose up
 install:
@@ -28,3 +30,5 @@ build:
 	docker-compose build
 logs:
 	docker-compose logs -f -t
+tail_logs:
+	tail -f log/development.log
