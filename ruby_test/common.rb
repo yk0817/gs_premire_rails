@@ -3,6 +3,7 @@ require 'active_record'
 require 'open-uri'
 require 'pp'
 require 'redis'
+require 'selenium-webdriver'
 
 ActiveRecord::Base.establish_connection(
   adapter:  "mysql2",  #アダプター名
