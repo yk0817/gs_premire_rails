@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
   context "password create" do
     it "" do
-      expect(User.create(email: 'hoge@gmail.com', password: "eeee88ee")).to be_valid
+      binding.pry
     end
   end
 end
