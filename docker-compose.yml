@@ -1,5 +1,5 @@
 # docker-composeのフォーマットver
-version: '3'
+version: '3.1'
 
 services:
 # 各サービス名を定義(コンテナ間通信の際、サービス名を元に指定出来る)
@@ -10,9 +10,12 @@ services:
     # 正常に終了させないとserver.pidが残るので削除
     command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec foreman start -f Procfile"
     # dockerホスト外に公開するポート:dockerホストポート
-    ports:
-      - "3000:3000"
+    ports: ['3000:3000']
     environment:
+      SELENIUM_HOST: selenium
+      SELENIUM_PORT: 4444
+      TEST_APP_HOST: web
+      TEST_PORT: 3000
       REDIS_URL: redis://redis:6379
       REDIS_PORT: 6379
     # バインドマウントパス(ローカル):マウント先(docker)のパス
@@ -47,6 +50,12 @@ services:
     command: redis-server --appendonly yes
 # http://docs.docker.jp/engine/userguide/containers/dockervolumes.html#id15
 # bundleは今の所必要なし
+  selenium:
+    image: selenium/standalone-chrome-debug:3.0.1-germanium
+    ports: ['4444:4444', '5900:5900']
+    logging:
+      driver: none
+
 volumes:
   db-volume:
   redis:
